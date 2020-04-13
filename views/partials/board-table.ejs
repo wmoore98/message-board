@@ -1,0 +1,40 @@
+<section class="board-table" aria-label="boards">
+  <% if (boards && boards.length) { %>
+  <table id="boardTable">
+    <caption>
+      Top Boards
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Board</th>
+        <th scope="col">Created On</th>
+        <th scope="col">Last Activity</th>
+        <th scope="col"># of Threads</th>
+        <th scope="col"># of Replies</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% boards.forEach(board => { %>
+      <tr onclick="window.location=`/b/<%= board._id %>`">
+        <td scope="row" data-label="Board">
+          <a href="/b/<%= board._id %>"><%= board._id %></a>
+        </td>
+        <td data-label="Created On" class="date">
+          <%= board.minCreated %>
+        </td>
+        <td data-label="Last Activity" class="date">
+          <%= board.maxBumped %>
+        </td>
+        <td data-label="# of Threads"><%= board.numThreads %></td>
+        <td data-label="# of Replies"><%= board.numReplies %></td>
+      </tr>
+
+      <% }) %>
+    </tbody>
+  </table>
+  <% } else if (Array.isArray(boards)) { %>
+  <p>There are no boards</p>
+  <% } else { %>
+  <p>There was an error retrieving boards</p>
+  <% } %>
+</section>

@@ -1,0 +1,19 @@
+.home__site-title {
+  margin: 2rem 0;
+  text-align: center;
+  background: linear-gradient(rgba(255, 0, 255, 0.6), rgba(255, 255, 255, 0.8)),
+    url("https://cdn.glitch.com/e6ac1989-f06e-4e36-bbc3-ca0b2a216c96%2Fwhiteboard-kanban-work-work-process.jpg?v=1586539046477")
+      center / cover;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.home__site-title > span {
+  display: block;
+}
+
+@media screen and (min-width: 600px) {
+  .home__site-title {
+    font-size: 3rem;
+  }
+}

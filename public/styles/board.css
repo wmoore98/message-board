@@ -1,0 +1,20 @@
+.board__name {
+  font-size: 2rem;
+  margin: 1rem 0 0.5rem;
+  text-transform: capitalize;
+}
+
+.board > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.board__name a {
+  text-decoration: none;
+}
+
+.board__thread-count {
+  font-size: 1rem;
+  font-weight: normal;
+}

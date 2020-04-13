@@ -1,0 +1,48 @@
+.base-info {
+  margin: 0;
+  font-size: 0.625rem;
+  font-weight: normal;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.base-info--reverse {
+  flex-direction: row-reverse;
+}
+
+.base-info__toggle {
+  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  fill: blue;
+  background-color: transparent;
+  margin-right: 1rem;
+}
+
+.base-info--reverse .base-info__toggle {
+  margin-left: 1rem;
+  margin-right: 0;
+}
+
+.base-info__toggle > svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.base-info__info {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.base-info--hidden {
+  display: none;
+}

@@ -1,0 +1,63 @@
+<article class="reply" aria-label="reply for <%= thread.title %>">
+  <header>
+    <%- include('../partials/base-info', {article: reply, reverse: true }) %>
+  </header>
+
+  <div class="reply__text marked-text">
+    <%- convertText(reply.text) %>
+  </div>
+
+  <form class="form update updateReply hideable" hidden>
+    <input type="hidden" name="thread_id" value="<%= thread._id %>" />
+    <input type="hidden" name="reply_id" value="<%= reply._id %>" />
+    <span class="originalText" hidden><%= fixBlockQuote(reply.text) _%></span>
+    <div class="form__textarea">
+      <textarea type="text" name="text" required></textarea>
+    </div>
+    <input
+      class="form__field"
+      type="text"
+      placeholder="password"
+      name="password"
+      required
+    />
+    <button class="button button--med button--primary" type="submit">
+      Update
+    </button>
+    <button class="btnCancel button button--med button--warning" type="button">
+      Cancel
+    </button>
+  </form>
+
+  <form class="form delete deleteReply hideable" hidden>
+    <input type="hidden" name="thread_id" value="<%= thread._id %>" />
+    <input type="hidden" name="reply_id" value="<%= reply._id %>" required="" />
+    <input
+      class="form__field"
+      type="text"
+      placeholder="password"
+      name="password"
+      required
+    />
+    <button class="button button--med button--danger" type="submit">
+      Delete
+    </button>
+    <button class="btnCancel button button--med button--primary" type="button">
+      Cancel
+    </button>
+  </form>
+
+  <form class="form report reportReply hideable" hidden>
+    <input type="hidden" name="thread_id" value="<%= thread._id %>" />
+    <input type="hidden" name="reply_id" value="<%= reply._id %>" />
+    <p class="form__prompt">Are you sure?</p>
+    <button class="button button--med button--warning" type="submit">
+      Yes
+    </button>
+    <button class="btnCancel button button--med button--primary" type="button">
+      Cancel
+    </button>
+  </form>
+
+  <%- include('../partials/actions') %>
+</article>

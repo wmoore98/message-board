@@ -1,0 +1,38 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 120 59"
+  preserveAspectRatio="xMidYMid meet"
+  width="120"
+>
+  <rect
+    id="lwt_background"
+    x="0"
+    y="0"
+    width="120"
+    height="59"
+    fill="transparent"
+    stroke="none"
+  />
+  <text
+    fill="white"
+    font-family="Damion, cursive"
+    font-size="36px"
+    font-weight="700"
+    x="14"
+    y="36"
+    id="lwt_logo"
+  >
+    Bill's
+  </text>
+  <text
+    fill="white"
+    font-family="Open Sans, cursive"
+    font-size="16px"
+    font-weight="400"
+    x="16"
+    y="56"
+    id="lwt_text1"
+  >
+    BOARDS
+  </text>
+</svg>

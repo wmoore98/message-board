@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include("../partials/head") -%>
+  </head>
+  <body>
+    <div class="page">
+      <%- include("../partials/header") -%>
+      <article class="page__content board">
+        <header>
+          <h1 class="board__name">
+            <a href="/b/<%= board %>"><%= board %></a>
+          </h1>
+          <p class="board__thread-count">
+            <%= `${pageControl.totalItems} total ${pageControl.totalItems === 1
+            ? 'thread' : 'threads'}` %>
+          </p>
+        </header>
+        <button
+          class="action button button--med button--primary"
+          type="button"
+          data-form-class="create"
+          title="Show new thread form"
+          style="margin-bottom: 1rem;"
+        >
+          Create a new thread
+        </button>
+
+        <form
+          class="form create hideable"
+          method="post"
+          action="/b/<%= board %>"
+          style="margin-bottom: 2rem;"
+          hidden
+        >
+          <h2 class="form__title">Create a new thread:</h2>
+          <input
+            class="form__field"
+            type="text"
+            placeholder="Thread Title"
+            name="title"
+            maxlength="40"
+            required
+          />
+          <div class="form__textarea">
+            <textarea
+              type="text"
+              placeholder="Thread text..."
+              name="text"
+              required
+            ></textarea>
+          </div>
+          <input
+            class="form__field"
+            type="text"
+            placeholder="password for edits"
+            name="password"
+            required
+          />
+          <button class="button button--med button--primary" type="submit">
+            Submit
+          </button>
+          <button
+            class="btnCancel button button--med button--warning"
+            type="button"
+          >
+            Cancel
+          </button>
+        </form>
+        <%- include("../partials/page-control", { itemTag: "threads" }) -%>
+        <section
+          class="board__threads"
+          aria-label="Threads for <%= board %> board."
+        >
+          <% threads.forEach(thread => { %> <%- include("../partials/thread", {
+          thread, parentPage: 'board' }) %> <% }) %>
+        </section>
+      </article>
+      <%- include("../partials/footer") -%>
+    </div>
+    <%- include("../partials/common-code", { board }) %>
+    <!-- -->
+  </body>
+</html>

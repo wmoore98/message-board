@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include("../partials/head") -%>
+  </head>
+  <body>
+    <div class="page">
+      <%- include("../partials/header") -%>
+      <div class="page__content">
+        <h1 class="board__name">
+          <a href="/b/<%= board %>"><%= board %></a>
+        </h1>
+        <%- include('../partials/thread', { thread, parentPage: 'thread' }) %>
+      </div>
+      <%- include("../partials/footer") %>
+    </div>
+    <%- include('../partials/common-code', { board }) %>
+  </body>
+</html>

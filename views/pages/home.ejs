@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include("../partials/head") -%>
+  </head>
+  <body class="page">
+    <%- include("../partials/header") -%>
+    <div class="page__content">
+      <h1 class="home__site-title">
+        <span>Welcome to</span>
+        <span>Bill's</span>
+        <span>Anonymous Message Board</span>
+      </h1>
+      <form class="form" id="navToBoard" action="/b/board" method="get">
+        <h2 class="form__title">Go to or Create Board</h2>
+        <input
+          class="form__field"
+          type="text"
+          placeholder="Board Name"
+          name="board"
+          required
+        />
+        <button class="button button--primary" type="submit">
+          Submit
+        </button>
+      </form>
+      <%- include("../partials/board-table") -%>
+    </div>
+    <%- include("../partials/footer") -%>
+    <script src="/public/src/lib.js"></script>
+    <script>
+      (() => {
+        document
+          .getElementById("navToBoard")
+          .addEventListener("submit", (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const board = formData.get("board");
+            window.location.href = `/b/${board}`;
+          });
+
+        formatDateTimes();
+      })();
+    </script>
+  </body>
+</html>

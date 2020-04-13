@@ -1,0 +1,109 @@
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/public/src/lib.js"></script>
+<script>
+  (function () {
+    formatDateTimes();
+
+    addSubmitListener(".updateThread", "/api/threads/<%= board %>", "PATCH");
+    addSubmitListener(".reportThread", "/api/threads/<%= board %>", "PUT");
+    addSubmitListener(".deleteThread", "/api/threads/<%= board %>", "DELETE");
+    addSubmitListener(".updateReply", "/api/replies/<%= board %>", "PATCH");
+    addSubmitListener(".reportReply", "/api/replies/<%= board %>", "PUT");
+    addSubmitListener(".deleteReply", "/api/replies/<%= board %>", "DELETE");
+
+    function addSubmitListener(selector, url, method) {
+      document.querySelectorAll(selector).forEach((elem) => {
+        elem.addEventListener("submit", function (e) {
+          e.preventDefault();
+          submitForm(e.target, url, method);
+        });
+      });
+    }
+
+    addListeners(".action", "click", (e) => {
+      hideForms();
+      showForm(e.target);
+    });
+
+    addListeners(".btnCancel", "click", (e) => {
+      e.target.parentElement.setAttribute("hidden", true);
+    });
+
+    addListeners(".base-info__toggle", "click", (e) => {
+      const getBaseInfoElement = (elem) => {
+        if (
+          elem.className &&
+          typeof elem.className === "string" &&
+          elem.className.split(" ").some((name) => name === "base-info")
+        ) {
+          return elem;
+        } else if (elem.parentElement) {
+          return getBaseInfoElement(elem.parentElement);
+        } else {
+          return undefined;
+        }
+      };
+      const baseInfoElem = getBaseInfoElement(e.target);
+      if (baseInfoElem) {
+        baseInfoElem.querySelectorAll(".base-info__info").forEach((elem) => {
+          elem.classList.toggle("base-info--hidden");
+        });
+      }
+    });
+
+    function addListeners(selector, type, cb) {
+      document.querySelectorAll(selector).forEach((elem) => {
+        elem.addEventListener(type, cb);
+      });
+    }
+
+    function hideForms() {
+      document
+        .querySelectorAll("form.hideable")
+        .forEach((elem) => elem.setAttribute("hidden", true));
+    }
+
+    // assumes actionElem is cousin of form to be shown
+    // works with siblings, too
+    function showForm(actionElem) {
+      const formClass = actionElem.getAttribute("data-form-class");
+      const parentElem = actionElem.parentElement.parentElement;
+      const form = parentElem.querySelector(`form.${formClass}`);
+      if (form) {
+        if (formClass === "update") {
+          const titleElem = form.querySelector(".threadTitle");
+          const saveTitleElem = form.querySelector("span.originalTitle");
+          if (titleElem && saveTitleElem) {
+            titleElem.value = saveTitleElem.innerText.trim();
+          }
+
+          const textElem = form.querySelector("textarea");
+          const saveTextElem = form.querySelector("span.originalText");
+          if (textElem && saveTextElem) {
+            textElem.value = saveTextElem.innerText.trim();
+          }
+        }
+        form.removeAttribute("hidden");
+      }
+    }
+
+    addBackButtonListener(".back");
+    function addBackButtonListener(selector) {
+      document.querySelectorAll(selector).forEach((elem) => {
+        elem.addEventListener("click", function (e) {
+          window.history.back();
+        });
+      });
+    }
+  })();
+
+  // https://yihui.org/en/2018/09/target-blank/
+  (function () {
+    var links = document.getElementsByTagName("a");
+    for (var i = 0; i < links.length; i++) {
+      if (/^(https?:)?\/\//.test(links[i].getAttribute("href"))) {
+        links[i].target = "_blank";
+      }
+    }
+  })();
+</script>

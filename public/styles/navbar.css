@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Damion&display=swap");
+
+.navbar {
+  width: 100%;
+  height: 100%;
+}
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.navbar li {
+  display: inline-block;
+  padding: 0 0.75rem;
+}
+
+.navbar a {
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+}

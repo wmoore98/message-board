@@ -1,0 +1,57 @@
+.marked-text {
+  --table-header-color: rgba(35, 117, 224, 0.5);
+  --table-odd-color: rgba(35, 117, 224, 0.25);
+  --table-even-color: rgba(70, 234, 255, 0.25);
+  --table-border-color: #888888;
+  --table-hover-color: rgba(128, 128, 128, 0.25);
+}
+
+.marked-text h1 {
+  font-size: 1.5rem;
+}
+
+.marked-text h2 {
+  font-size: 1.17rem;
+}
+
+.marked-text h3 {
+  font-size: 1rem;
+}
+
+.marked-text h4 {
+  font-size: 0.92rem;
+}
+
+.marked-text table {
+  border-collapse: collapse;
+}
+
+.marked-text td,
+.marked-text th {
+  border: 1px solid var(--table-border-color);
+  padding: 0.5rem;
+}
+
+.marked-text th,
+.marked-text tfoot {
+  background-color: var(--table-header-color);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.marked-text tr:nth-child(odd) {
+  background-color: var(--table-odd-color);
+}
+.marked-text tr:nth-child(even) {
+  background-color: var(--table-even-color);
+}
+
+.marked-text tr:hover {
+  background: var(--table-hover-color);
+}
+
+.marked-text hr {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -1,0 +1,79 @@
+<section class="page-control">
+  <header class="page-control__text">
+    <h2>
+      <span class="page-control__descr">
+        Displaying <%= itemTag ? itemTag : items %>
+      </span>
+      <span><%= pageControl.firstItemOnPage %></span>
+      -
+      <span><%= pageControl.lastItemOnPage %></span>
+      of
+      <span><%= pageControl.totalItems %></span>
+    </h2>
+  </header>
+  <section class="page-control__controls" aria-label="Pagination controls">
+    <% if (pageControl.currentPage > 1) { %>
+    <button
+      class="button button--default button--small"
+      onclick="window.location.href = '<%= pageControl.firstPage %>'"
+      title="Go to first page"
+    >
+      <i class="fas fa-fast-backward"></i>
+    </button>
+    <button
+      class="button button--default button--small"
+      onclick="window.location.href = '<%= pageControl.prevPage %>'"
+      title="Go to previous page"
+    >
+      <i class="fas fa-backward"></i>
+    </button>
+    <% } else { %>
+    <button
+      class="button button--default button--small"
+      disabled
+      title="Go to first page"
+    >
+      <i class="fas fa-fast-backward"></i>
+    </button>
+    <button
+      class="button button--default button--small"
+      disabled
+      title="Go to previous page"
+    >
+      <i class="fas fa-backward"></i>
+    </button>
+    <% } %>
+    <!---->
+    <% if (pageControl.currentPage < pageControl.totalPages) { %>
+    <button
+      class="button button--default button--small"
+      onclick="window.location.href = '<%= pageControl.nextPage %>'"
+      title="Go to next page"
+    >
+      <i class="fas fa-forward"></i>
+    </button>
+    <button
+      class="button button--default button--small"
+      onclick="window.location.href = '<%= pageControl.lastPage %>'"
+      title="Go to last page"
+    >
+      <i class="fas fa-fast-forward"></i>
+    </button>
+    <% } else { %>
+    <button
+      class="button button--default button--small"
+      disabled
+      title="Go to next page"
+    >
+      <i class="fas fa-forward"></i>
+    </button>
+    <button
+      class="button button--default button--small"
+      disabled
+      title="Go to last page"
+    >
+      <i class="fas fa-fast-forward"></i>
+    </button>
+    <% } %>
+  </section>
+</section>

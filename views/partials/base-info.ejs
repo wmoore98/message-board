@@ -1,0 +1,16 @@
+<section class="base-info<%= reverse ? ' base-info--reverse' : '' %>">
+  <button class="base-info__toggle">
+    <%- include("../../public/images/icons/info.svg") %>
+  </button>
+  <div class="base-info__info base-info--hidden">
+    <span class="base-info__item">
+      id: <%= article._id %>
+    </span>
+    <span class="base-info__item">
+      created: <span class="datetime"><%= article.created_on %></span>
+    </span>
+    <span class="base-info__item">
+      last edited: <span class="datetime"><%= article.last_edited_on %></span>
+    </span>
+  </div>
+</section>

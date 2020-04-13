@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include("../partials/head") -%>
+  </head>
+  <body>
+    <div class="page">
+      <%- include("../partials/header") -%>
+      <div class="page__content">
+        <div id="testui" style="margin-left: 5%;">
+          <h2 style="text-align: left;">API Tests:</h2>
+          <h4>New thread (POST /api/threads/:board)</h4>
+          <form id="newThread" action="/api/threads/test" method="post">
+            <input
+              type="text"
+              placeholder="board"
+              name="board"
+              required
+            /><br />
+            <input
+              type="text"
+              placeholder="Thread Title"
+              name="thread"
+              required
+            /><br />
+            <textarea
+              type="text"
+              placeholder="Thread text..."
+              name="text"
+              required
+            ></textarea
+            ><br />
+            <input
+              type="text"
+              placeholder="password for edits"
+              name="password"
+              required
+            /><br />
+            <input type="submit" value="Submit" />
+          </form>
+          <hr />
+          <h4>Report thread (PUT /api/threads/:board)</h4>
+          <form id="reportThread">
+            <input
+              type="text"
+              placeholder="board"
+              name="board"
+              required
+            /><br />
+            <input
+              type="text"
+              placeholder="id to report"
+              name="thread_id"
+              required
+            /><br />
+            <input type="submit" value="Submit" />
+          </form>
+          <hr />
+          <h4>Delete thread (DELETE /api/threads/:board)</h4>
+          <form id="deleteThread">
+            <input
+              type="text"
+              placeholder="board"
+              name="board"
+              required
+            /><br />
+            <input
+              type="text"
+              placeholder="id to delete"
+              name="thread_id"
+              required
+            /><br />
+            <input
+              type="text"
+              placeholder="password"
+              name="password"
+              required
+            /><br />
+            <input type="submit" value="Submit" />
+          </form>
+          <hr />
+
+          <h4>New reply (POST /api/replies/:board)</h4>
+          <form action="/api/threads/test" method="post" id="newReply">
+            <input
+              type="text"
+              placeholder="board"
+              name="board"
+              required
+            /><br />
+            <input
+              type="text"
+              placeholder="thread id"
+              name="thread_id"
+              required
+            /><br />
+            <textarea
+              type="text"
+              placeholder="Reply text..."
+              name="text"
+              required
+            ></textarea
+            ><br />
+            <input
+              type="text"
+              placeholder="password for edits"
+              name="password"
+              required
+            /><br />
+            <input type="submit" value="Submit" />
+          </form>
+          <hr />
+          <h4>Report reply (PUT /api/replies/:board)</h4>
+          <form id="reportReply">
+            <input
+              type="text"
+              placeholder="board"
+              name="board"
+              required
+            /><br />
+            <input
+              type="text"
+              placeholder="thread id"
+              name="thread_id"
+              required
+            /><br />
+            <input
+              type="text"
+              placeholder="id to report"
+              name="reply_id"
+              required
+            /><br />
+            <input type="submit" value="Submit" />
+          </form>
+          <hr />
+          <h4>Delete reply (DELETE /api/replies/:board)</h4>
+          <form id="deleteReply">
+            <input
+              type="text"
+              placeholder="board"
+              name="board"
+              required
+            /><br />
+            <input
+              type="text"
+              placeholder="thread id"
+              name="thread_id"
+              required
+            /><br />
+            <input
+              type="text"
+              placeholder="id to delete"
+              name="reply_id"
+              required
+            /><br />
+            <input
+              type="text"
+              placeholder="password"
+              name="password"
+              required
+            /><br />
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+        <hr style="margin: 50px; margin-top: 200px;" />
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="/public/src/lib.js"></script>
+        <script>
+          document
+            .getElementById("newThread")
+            .addEventListener("submit", (e) => {
+              const form = e.target;
+              const { board } = getFormData(form);
+              form.setAttribute("action", `/api/threads/${board}`);
+            });
+
+          document
+            .getElementById("newReply")
+            .addEventListener("submit", (e) => {
+              const form = e.target;
+              const { board } = getFormData(form);
+              form.setAttribute("action", `/api/replies/${board}`);
+            });
+
+          addSubmitListener("#reportThread", "/api/threads", "PUT");
+          addSubmitListener("#deleteThread", "/api/threads", "DELETE");
+          addSubmitListener("#reportReply", "/api/replies", "PUT");
+          addSubmitListener("#deleteReply", "/api/replies", "DELETE");
+
+          function addSubmitListener(selector, url, method) {
+            document.querySelectorAll(selector).forEach((elem) => {
+              elem.addEventListener("submit", function (e) {
+                e.preventDefault();
+                submitForm(
+                  e.target,
+                  `${url}/${getFormData(e.target).board}`,
+                  method
+                );
+              });
+            });
+          }
+        </script>
+      </div>
+      <%- include("../partials/footer") -%>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+<article class="thread" aria-label="thread for <%= board %>">
+  <header>
+    <% if (parentPage === 'board') { %>
+    <h2 class="thread__title">
+      <a href="<%= `${board}/${thread._id}` %>"
+        ><%- convertTitle(thread.title) %></a
+      >
+    </h2>
+    <% } else { %>
+    <h2 class="thread__title">
+      <%- convertTitle(thread.title) %>
+    </h2>
+    <% } %>
+    <!---->
+    <%- include('../partials/base-info', {article: thread, reverse: false}) %>
+  </header>
+  <div class="thread__text marked-text">
+    <%- convertText(thread.text) %>
+  </div>
+
+  <form class="form update updateThread hideable" hidden>
+    <input type="hidden" name="thread_id" value="<%= thread._id %>" />
+    <span class="originalTitle" hidden><%= thread.title _%></span>
+    <span class="originalText" hidden>
+      <%= fixBlockQuote(thread.text) _%>
+    </span>
+    <input
+      class="form__field threadTitle"
+      type="text"
+      placeholder="Title of Thread"
+      name="title"
+      maxlength="40"
+      required
+    />
+    <div class="form__textarea">
+      <textarea
+        type="text"
+        placeholder="Text of thread..."
+        name="text"
+        required
+      ></textarea>
+    </div>
+    <input
+      class="form__field"
+      type="text"
+      placeholder="password"
+      name="password"
+      required
+    />
+    <button class="button button--med button--primary" type="submit">
+      Update
+    </button>
+    <button class="btnCancel button button--med button--warning" type="button">
+      Cancel
+    </button>
+  </form>
+
+  <form class="form delete deleteThread hideable" hidden>
+    <input type="hidden" name="thread_id" value="<%= thread._id %>" />
+    <input
+      class="form__field"
+      type="text"
+      placeholder="password"
+      name="password"
+      required
+    />
+    <button class="button button--med button--danger" type="submit">
+      Delete
+    </button>
+    <button class="btnCancel button button--med button--primary" type="button">
+      Cancel
+    </button>
+  </form>
+
+  <form class="form report reportThread hideable" hidden>
+    <input type="hidden" name="thread_id" value="<%= thread._id %>" />
+    <p class="form__prompt">Are you sure?</p>
+    <button class="button button--med button--warning" type="submit">
+      Yes
+    </button>
+    <button class="btnCancel button button--med button--primary" type="button">
+      Cancel
+    </button>
+  </form>
+
+  <%- include('../partials/actions') %>
+
+  <section class="thread__replies" aria-label="Replies for thread">
+    <header>
+      <% if (parentPage === 'board') { %>
+      <p>
+        <%= `${thread.reply_count} ${thread.reply_count === 1 ? "reply" :
+        "replies"} total` %> ( <%= thread.reply_count - thread.replies.length <
+        0 ? 0 : thread.reply_count - thread.replies.length %> hidden)
+        <a href="<%= `${board}/${thread._id}` %>"> See the full thread here</a>.
+      </p>
+      <% } else { %>
+      <p>
+        <%= `${thread.reply_count} ${thread.reply_count === 1 ? "reply" :
+        "replies"} total.` %>
+      </p>
+      <% } %>
+    </header>
+    <% thread.replies.forEach(reply => { %>
+    <!-- -->
+    <%- include('../partials/reply', { reply }) %>
+    <!---->
+    <% }) %>
+
+    <form
+      class="form"
+      method="post"
+      action="/b/<%= board %>/<%= thread._id %>"
+      aria-label="Submit a reply"
+    >
+      <div class="form__textarea">
+        <textarea
+          type="text"
+          placeholder="Quick reply..."
+          name="text"
+          required
+        ></textarea>
+      </div>
+      <input
+        class="form__field"
+        type="text"
+        placeholder="password for edits"
+        name="password"
+        required
+      />
+      <button class="button button--med button--primary" type="submit">
+        Submit
+      </button>
+    </form>
+  </section>
+</article>

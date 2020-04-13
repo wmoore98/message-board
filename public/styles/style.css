@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+@import url("page.css");
+@import url("form.css");
+@import url("button.css");
+@import url("page-control.css");
+@import url("board-table.css");
+@import url("base-info.css");
+@import url("marked-text.css");
+@import url("navbar.css");
+@import url("home.css");
+@import url("board.css");
+@import url("thread.css");
+@import url("reply.css");
+@import url("footer.css");
+
+:root {
+  --header-height: 4rem;
+  --max-page-width: 80rem;
+  /* --main-bg-color: rgba(146, 146, 204, 0.95);
+  --main-bg-color-light: rgba(146, 146, 204, 0.125);
+  --main-fg-color: rgba(204, 146, 146, 1); */
+  --main-bg-color: hsla(300, 87%, 57%, 0.95);
+  --main-bg-color-light: hsla(300, 87%, 57%, 0.125);
+  --main-fg-color: rgba(204, 146, 146, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: white;
+  height: 100vh;
+}
+
+body {
+  width: 100vw;
+  max-width: 80rem;
+  font-family: "Open Sans", sans-serif;
+  background: var(--main-bg-color-light);
+  margin: 0 auto;
+}
+
+/* .container {
+  width: 100%;
+  margin: 1rem auto;
+} */

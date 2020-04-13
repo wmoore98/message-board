@@ -1,0 +1,49 @@
+.form {
+  margin: 0.5rem auto 1rem;
+  padding: 1rem;
+  background: hsla(230, 87%, 57%, 0.125);
+  border-radius: 5px;
+  box-shadow: inset 0 -3rem 3rem rgba(0, 0, 0, 0.1),
+    0 0 0 2px hsla(230, 3%, 35%, 0.25), 0.3rem 0.3rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+.form__textarea {
+  margin: 0.5rem 0 -0.25rem;
+  width: 100%;
+}
+
+.form__textarea textarea {
+  border-radius: 5px;
+  padding: 0.5rem;
+  width: 100%;
+  height: 8rem;
+}
+
+.form__title {
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+.form__field {
+  border-radius: 5px;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  display: block;
+  width: 100%;
+}
+
+.form__prompt {
+  font-size: 1.125rem;
+  margin: 0 0 1rem;
+}
+
+@media screen and (min-width: 52rem) {
+  .form {
+    padding: 2rem;
+  }
+  .form__field,
+  .form__textarea {
+    width: 40rem;
+  }
+}

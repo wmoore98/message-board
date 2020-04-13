@@ -1,0 +1,51 @@
+.thread {
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  background: hsla(270, 87%, 57%, 0.125);
+  border-radius: 5px;
+  box-shadow: inset 0 -3rem 3rem rgba(0, 0, 0, 0.1),
+    0 0 0 2px hsla(270, 87%, 57%, 0.25), 0.3rem 0.3rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+.thread:last-child {
+  margin-bottom: 0;
+}
+
+.thread__title {
+  margin: 0;
+}
+
+.thread__text {
+  margin: 0.5rem 0;
+  overflow-x: auto;
+}
+
+@media screen and (min-width: 44rem) {
+  .thread {
+    padding: 2rem 2rem 1rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media screen and (min-width: 54rem) {
+  .thread > header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.thread__replies {
+  margin: 2rem 0 0 0;
+}
+
+.thread__replies > header {
+  margin-bottom: 1rem;
+}
+
+.thread__replies > hr {
+  width: 80%;
+  height: 1px;
+  color: #c0c0f0;
+  margin: 1rem auto;
+}
